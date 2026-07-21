@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { errMiddleware } from "./middleware/error.middleware.js";
 import { ConnectDB } from "./config/db.js";
 import authRouter from "./routes/auth.route.js";
+import contactRouter from "./routes/contact.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,13 +25,14 @@ app.get("/", (req, res) => {
     message: "Welcome to the Contact Form Management API",
   });
 });
-app.use("/api/auth",authRouter)
+
+app.use("/api/auth", authRouter);
+app.use("/api/contact", contactRouter);
 
 app.use(errMiddleware); // error middleware
+
 app.listen(PORT, async () => {
   await ConnectDB();
   console.log(`Server is running on port ${PORT}`);
 });
 
-
-console.clear()

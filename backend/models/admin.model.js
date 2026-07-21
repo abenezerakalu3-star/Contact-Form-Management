@@ -10,6 +10,7 @@ const adminSchema = new mongoose.Schema(
     email: {
       type: String,
       match: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      unique:true,
       required: true,
     },
     password: {
@@ -17,6 +18,11 @@ const adminSchema = new mongoose.Schema(
       minLength: [6, "Password must be at least 6 characters long"],
       required: true,
     },
+    role:{
+      type:String,
+      enum:["user","admin"],
+      default: "user"
+    }
   },
   { timestamps: true },
 );

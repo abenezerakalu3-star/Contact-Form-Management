@@ -15,7 +15,7 @@ const contactSchema = new mongoose.Schema(
     phone: {
       type: String,
       minLength: [10, "Phone must be at least 10 characters long"],
-      required: true,
+     
     },
     subject: { type: String, required: true },
     message: {
@@ -26,12 +26,11 @@ const contactSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["Pending", "Read", "Replied", "Closed"],
-      default: "pending",
+      default: "Pending",
     },
   },
   { timestamps: true },
 );
-
 
 const Contact = mongoose.model("Contact", contactSchema);
 export default Contact;
